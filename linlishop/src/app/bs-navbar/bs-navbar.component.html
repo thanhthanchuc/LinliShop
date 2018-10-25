@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-  <a class="navbar-brand" href="#">Dashboard</a>
+  <a class="navbar-brand" href="#">Lin Li</a>
   <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
     aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,17 +7,21 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="!isCollapsed">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="" (click)="isCollapsed = false">Home <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/shopping-cart" (click)="isCollapsed = false">Shopping Cart</a>
+        <a class="nav-link" routerLink="/shopping-cart" (click)="isCollapsed = false">Giỏ hàng</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Help</a>
+      <li ngbDropdown class="nav-item dropdown">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Username
+        </a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/my/orders" (click)="isCollapsed = false">Đơn hàng của tôi</a>
+          <a class="dropdown-item" routerLink="/admin/orders" (click)="isCollapsed = false">Quản lý đơn hàng</a>
+          <a class="dropdown-item" routerLink="/admin/products" (click)="isCollapsed = false">Quản lý sản phẩm</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" (click)="isCollapsed = false">Đăng xuất</a>
+        </div>
       </li>
     </ul>
     <form class="form-inline mt-2 mt-md-0">

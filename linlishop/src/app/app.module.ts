@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireAuthModule } from "angularfire2/auth";
-import { NgbCollapseModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbCollapseModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { RouterModule } from "@angular/router";
 
 import { AppComponent } from "./app.component";
@@ -23,6 +23,7 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
   declarations: [AppComponent, HomeComponent, ProductsComponent, ShoppingCartComponent, CheckOutComponent, OrderSuccessComponent, MyOrdersComponent, AdminProductsComponent, AdminOrdersComponent, LoginComponent, BsNavbarComponent],
   imports: [
     NgbCollapseModule,
+    NgbModule.forRoot(),
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
@@ -32,6 +33,7 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
       {path: "products", component: ProductsComponent},
       {path: "shopping-cart", component: ShoppingCartComponent},
       {path: "check-out", component: CheckOutComponent},
+      {path: "my/orders", component: MyOrdersComponent},
       {path: "order-success", component: OrderSuccessComponent},
       {path: "login", component: LoginComponent},
       {path: "admin/products", component: AdminProductsComponent},
