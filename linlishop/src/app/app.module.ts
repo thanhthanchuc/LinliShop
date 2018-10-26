@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { AngularFireModule } from "angularfire2";
@@ -40,7 +41,7 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
       {path: "admin/orders", component: AdminOrdersComponent}
     ])
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
