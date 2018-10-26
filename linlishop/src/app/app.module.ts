@@ -20,6 +20,7 @@ import { AdminProductsComponent } from "./admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from "./admin/admin-orders/admin-orders.component";
 import { LoginComponent } from "./login/login.component";
 import { BsNavbarComponent } from "./bs-navbar/bs-navbar.component";
+import { UserService } from "./user.service";
 
 @NgModule({
   declarations: [
@@ -74,7 +75,7 @@ import { BsNavbarComponent } from "./bs-navbar/bs-navbar.component";
       }
     ])
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
