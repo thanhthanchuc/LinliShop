@@ -10,10 +10,12 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart" (click)="isCollapsed = false">Giỏ hàng</a>
       </li>
-      <li *ngIf="!user" class="nav-item">
-        <a class="nav-link" routerLink="/login" (click)="isCollapsed = false">Đăng nhập</a>
-      </li>
-      <li *ngIf="user" ngbDropdown class="nav-item dropdown">
+      <ng-template #anonimusUser>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" (click)="isCollapsed = false">Đăng nhập</a>
+        </li>
+      </ng-template>
+      <li *ngIf="user$ | async as user; else anonimusUser" ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           {{user.displayName}}
