@@ -1,3 +1,4 @@
+import { AppUser } from './../models/app-user';
 import { AuthService } from './../auth.service';
 import { AngularFireAuth } from "angularfire2/auth";
 import { Component } from "@angular/core";
@@ -11,10 +12,10 @@ import { Observable } from "rxjs";
 })
 export class BsNavbarComponent {
   isCollapsed = false;
-  user$ : Observable<firebase.User>;
+  user$ : Observable<{}>;
 
   constructor(private auth: AuthService) {
-    this.user$ = auth.user$;
+    this.user$ = auth.appUser$;
   }
 
   logout() {
