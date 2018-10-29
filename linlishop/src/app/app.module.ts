@@ -1,3 +1,4 @@
+import { AdminAuthService } from "./admin-auth-service.service";
 import { AuthGuardService } from "./auth-guard.service";
 import { AuthService } from "./auth.service";
 import { BrowserModule } from "@angular/platform-browser";
@@ -66,16 +67,16 @@ import { UserService } from "./user.service";
       {
         path: "admin/products",
         component: AdminProductsComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, AdminAuthService]
       },
       {
         path: "admin/orders",
         component: AdminOrdersComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService, AdminAuthService]
       }
     ])
   ],
-  providers: [AuthService, AuthGuardService, UserService],
+  providers: [AuthService, AuthGuardService, UserService, AdminAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
