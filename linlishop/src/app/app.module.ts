@@ -22,6 +22,7 @@ import { AdminOrdersComponent } from "./admin/admin-orders/admin-orders.componen
 import { LoginComponent } from "./login/login.component";
 import { BsNavbarComponent } from "./bs-navbar/bs-navbar.component";
 import { UserService } from "./user.service";
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserService } from "./user.service";
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    BsNavbarComponent
+    BsNavbarComponent,
+    ProductFormComponent
   ],
   imports: [
     NgbCollapseModule,
@@ -72,6 +74,11 @@ import { UserService } from "./user.service";
       {
         path: "admin/orders",
         component: AdminOrdersComponent,
+        canActivate: [AuthGuardService, AdminAuthService]
+      },
+      {
+        path: "admin/products/new",
+        component: ProductFormComponent,
         canActivate: [AuthGuardService, AdminAuthService]
       }
     ])
