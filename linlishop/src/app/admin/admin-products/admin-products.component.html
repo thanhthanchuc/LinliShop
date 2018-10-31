@@ -1,1 +1,21 @@
-<button routerLink="/admin/products/new" class="btn btn-primary">Thêm vật phẩm</button>
+<p>
+    <button routerLink="/admin/products/new" class="btn btn-primary">Thêm vật phẩm</button>
+</p>
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of products$ | async">
+            <td>{{item.payload.node_.children_.root_.right.value.value_}}</td>
+            <td>{{item.payload.node_.children_.root_.value.value_}}</td>
+            <td>
+                <a [routerLink]="['/admin/products/', item.key]">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
