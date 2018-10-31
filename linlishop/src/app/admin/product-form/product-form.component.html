@@ -1,25 +1,25 @@
-<form>
+<form #f="ngForm" (ngSubmit)="save(f.value)">
   <div class="form-group">
     <label for="title">Tên sản phẩm</label>
-    <input type="text" class="form-control" id="title">
+    <input ngModel name="title" type="text" class="form-control" id="title">
   </div>
   <div class="form-group">
     <label for="price">Giá</label>
     <div class="input-group">
       <span class="input-group-text">vnđ</span>
-      <input type="number" class="form-control" id="price">
+      <input ngModel name="price" type="number" class="form-control" id="price">
     </div>
   </div>
   <div class="form-group">
     <label for="category">Thể loại</label>
-    <select class="form-control" id="category">
+    <select ngModel name="category" class="form-control" id="category">
       <option value=""></option>
-      <option [value]="item.$key" *ngFor="let item of categories$ | async">{{item.name}}</option>
+      <option *ngFor="let item of categories$ | async" [value]="item.key">{{item.payload.node_.children_.root_.value.value_}}</option>
     </select>
   </div>
   <div class="form-group">
     <label for="imageUrl">Link hình ảnh</label>
-    <input type="text" class="form-control" id="imageUrl">
+    <input ngModel name="imageUrl" type="text" class="form-control" id="imageUrl">
   </div>
   <button class="btn btn-primary">Save</button>
 </form>
