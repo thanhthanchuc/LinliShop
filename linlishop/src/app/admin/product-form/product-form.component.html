@@ -1,39 +1,52 @@
-<form #f="ngForm" (ngSubmit)="save(f.value)">
-  <div class="form-group">
-    <label for="title">Tên sản phẩm</label>
-    <input #title="ngModel" ngModel name="title" type="text" class="form-control" id="title" required>
-    <div *ngIf="title.touched && title.invalid" class="alert alert-danger">
-      Bạn không thể bỏ trống trường này
+<div class="row">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <div class="form-group">
+        <label for="title">Tên sản phẩm</label>
+        <input #title="ngModel" ngModel name="title" type="text" class="form-control" id="title" required>
+        <div *ngIf="title.touched && title.invalid" class="alert alert-danger">
+          Bạn không thể bỏ trống trường này
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="price">Giá</label>
+        <div class="input-group">
+          <span class="input-group-text">vnđ</span>
+          <input ngModel name="price" type="number" class="form-control" id="price" required #price="ngModel" [min]="0">
+        </div>
+        <div *ngIf="price.touched && price.invalid" class="alert alert-danger">
+          <div *ngIf="price.errors.required">Bạn không thể bỏ trống trường này</div>
+          <div *ngIf="price.errors.min">Giá của mặt hàng này phải bằng 0 hoặc lớn hơn</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Thể loại</label>
+        <select ngModel name="category" class="form-control" id="category" required #category="ngModel">
+          <option value=""></option>
+          <option *ngFor="let item of categories$ | async" [value]="item.key">{{item.payload.node_.children_.root_.value.value_}}</option>
+        </select>
+        <div *ngIf="category.touched && category.invalid" class="alert alert-danger">
+          Bạn không thể bỏ trống trường này
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Link hình ảnh</label>
+        <input ngModel name="imageUrl" type="text" class="form-control" id="imageUrl" required #imageUrl="ngModel" url>
+        <div *ngIf="imageUrl.touched && imageUrl.invalid" class="alert alert-danger">
+          <div *ngIf="imageUrl.errors.required">Bạn không thể bỏ trống trường này</div>
+          <div *ngIf="imageUrl.errors.url">Vui lòng điền đúng dạng Url</div>
+        </div>
+      </div>
+      <button class="btn btn-primary">Save</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" [src]="imageUrl.value">
+      <div class="card-body">
+        <h5 class="card-title">{{title.value}}</h5>
+        <p class="card-text">{{price.value | currency: 'VND' : true}}</p>
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <label for="price">Giá</label>
-    <div class="input-group">
-      <span class="input-group-text">vnđ</span>
-      <input ngModel name="price" type="number" class="form-control" id="price" required #price="ngModel" [min]="0">
-    </div>
-    <div *ngIf="price.touched && price.invalid" class="alert alert-danger">
-      <div *ngIf="price.errors.required">Bạn không thể bỏ trống trường này</div>
-      <div *ngIf="price.errors.min">Giá của mặt hàng này phải bằng 0 hoặc lớn hơn</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="category">Thể loại</label>
-    <select ngModel name="category" class="form-control" id="category" required #category="ngModel">
-      <option value=""></option>
-      <option *ngFor="let item of categories$ | async" [value]="item.key">{{item.payload.node_.children_.root_.value.value_}}</option>
-    </select>
-    <div *ngIf="category.touched && category.invalid" class="alert alert-danger">
-      Bạn không thể bỏ trống trường này
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="imageUrl">Link hình ảnh</label>
-    <input ngModel name="imageUrl" type="text" class="form-control" id="imageUrl" required #imageUrl="ngModel" url>
-    <div *ngIf="imageUrl.touched && imageUrl.invalid" class="alert alert-danger">
-      <div *ngIf="imageUrl.errors.required">Bạn không thể bỏ trống trường này</div>
-      <div *ngIf="imageUrl.errors.url">Vui lòng điền đúng dạng Url</div>
-    </div>
-  </div>
-  <button class="btn btn-primary">Save</button>
-</form>
+</div>
