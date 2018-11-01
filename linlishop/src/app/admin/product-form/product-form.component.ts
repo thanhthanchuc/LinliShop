@@ -35,7 +35,14 @@ export class ProductFormComponent implements OnInit {
   save(product) {
     if (this.id) this.productService.update(this.id, product);
     else this.productService.create(product);
-    
+
     this.router.navigate(["/admin/products"]);
+  }
+
+  delete() {
+    if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
+      this.productService.delete(this.id);
+      this.router.navigate(["/admin/products"]);
+    }
   }
 }
