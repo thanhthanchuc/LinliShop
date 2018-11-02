@@ -1,3 +1,14 @@
-<p>
-  home works!
-</p>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let p of product$ | async" class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" [src]="p.payload.node_.children_.root_.left.value.value_">
+        <div class="card-body">
+          <h5 class="card-title">{{p.payload.node_.children_.root_.right.value.value_}}</h5>
+          <p class="card-text">{{p.payload.node_.children_.root_.value.value_}}000 vnđ</p>
+        </div>
+        <a href="#" class="btn btn-dark card-body">Thêm vào giỏ hàng</a>
+      </div>
+    </div>
+  </div>
+</div>

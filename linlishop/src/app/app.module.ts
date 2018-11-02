@@ -1,5 +1,5 @@
-import { ProductService } from './product.service';
-import { CategoriesService } from './categories.service';
+import { ProductService } from "./product.service";
+import { CategoriesService } from "./categories.service";
 import { AdminAuthService } from "./admin-auth-service.service";
 import { AuthGuardService } from "./auth-guard.service";
 import { AuthService } from "./auth.service";
@@ -11,6 +11,7 @@ import { AngularFireAuthModule } from "angularfire2/auth";
 import { NgbCollapseModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { RouterModule } from "@angular/router";
 import { CustomFormsModule } from "ng2-validation";
+import { DataTableModule } from "angular-6-datatable";
 
 import { AppComponent } from "./app.component";
 import { environment } from "src/environments/environment";
@@ -25,8 +26,8 @@ import { AdminOrdersComponent } from "./admin/admin-orders/admin-orders.componen
 import { LoginComponent } from "./login/login.component";
 import { BsNavbarComponent } from "./bs-navbar/bs-navbar.component";
 import { UserService } from "./user.service";
-import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { FormsModule } from '@angular/forms';
+import { ProductFormComponent } from "./admin/product-form/product-form.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     FormsModule,
     CustomFormsModule,
+    DataTableModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -94,7 +96,14 @@ import { FormsModule } from '@angular/forms';
       }
     ])
   ],
-  providers: [AuthService, AuthGuardService, UserService, AdminAuthService, CategoriesService, ProductService],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    UserService,
+    AdminAuthService,
+    CategoriesService,
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

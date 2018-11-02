@@ -4,7 +4,7 @@
 <p>
     <input #query type="text" class="form-control" placeholder="Tìm kiếm..." (keyup)="filter(query.value)">
 </p>
-<table class="table table-hover table-bordered">
+<!-- <table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th>Tên sản phẩm</th>
@@ -21,4 +21,35 @@
             </td>
         </tr>
     </tbody>
+</table> -->
+<table class="table table-striped table-bordered" [mfData]="filteredProducts" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+        <tr>
+            <th style="width: 50%">
+                <mfDefaultSorter by="title">Tên sản phẩm</mfDefaultSorter>
+            </th>
+            <th style="width: 30%">
+                <mfDefaultSorter by="price">Giá</mfDefaultSorter>
+            </th>
+            <th style="width: 20%">
+                <mfDefaultSorter></mfDefaultSorter>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of filteredProducts">
+            <td>{{item.payload.node_.children_.root_.right.value.value_}}</td>
+            <td>{{item.payload.node_.children_.root_.value.value_}}</td>
+            <td>
+                <a [routerLink]="['/admin/products/', item.key]">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+            </td>
+        </tr>
+    </tfoot>
 </table>

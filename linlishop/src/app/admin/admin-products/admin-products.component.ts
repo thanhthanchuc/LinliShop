@@ -1,6 +1,7 @@
 import { ProductService } from "./../../product.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
+import { DataTableModule } from "angular-6-datatable";
 
 @Component({
   selector: "app-admin-products",
