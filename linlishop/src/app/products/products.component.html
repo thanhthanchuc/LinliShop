@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
-      <div class="list-group">
-        <a *ngIf="filterProducts.length !== 0" routerLink="/" [class.active]="!category" class="list-group-item list-group-item-action">Tất
-          cả</a>
-        <a *ngFor="let item of categories$ | async" routerLink="/" [queryParams]="{category: item.key}" class="list-group-item list-group-item-action"
-          [class.active]="category === item.key">{{item.payload.node_.children_.root_.value.value_}}</a>
+      <div class="sticky-top">
+        <div class="list-group">
+          <a *ngIf="filterProducts.length !== 0" routerLink="/" [class.active]="!category" class="list-group-item list-group-item-action">Tất
+            cả</a>
+          <a *ngFor="let item of categories$ | async" routerLink="/" [queryParams]="{category: item.key}" class="list-group-item list-group-item-action"
+            [class.active]="category === item.key">{{item.payload.node_.children_.root_.value.value_}}</a>
+        </div>
       </div>
     </div>
     <div class="col">
