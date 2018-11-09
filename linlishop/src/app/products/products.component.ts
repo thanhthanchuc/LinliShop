@@ -3,6 +3,7 @@ import { CategoriesService } from "./../categories.service";
 import { ProductService } from "./../product.service";
 import { Component } from "@angular/core";
 import { switchMap } from "rxjs/operators";
+import { ShoppingCardService } from "../shopping-card.service";
 
 @Component({
   selector: "app-products",
@@ -18,7 +19,8 @@ export class ProductsComponent {
   constructor(
     productService: ProductService,
     categoriesService: CategoriesService,
-    route: ActivatedRoute
+    route: ActivatedRoute,
+    private cardService : ShoppingCardService
   ) {
     productService.getAll().pipe(switchMap(products => {
       this.products = products;
@@ -36,5 +38,9 @@ export class ProductsComponent {
 
     this.categories$ = categoriesService.getAll();
 
+  }
+
+  addToCard(product) {
+   
   }
 }
