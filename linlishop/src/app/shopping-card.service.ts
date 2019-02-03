@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
 import { take } from "rxjs/operators";
+import { Product } from "./models/product";
 
 @Injectable({
   providedIn: "root"
@@ -28,13 +29,26 @@ export class ShoppingCartService {
   }
 
   async addToCart(product) {
+    console.log(product);
     let cartId = await this.getOrCreateCartId();
 
     let item$ = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key);
 
     item$.valueChanges().pipe(take(1)).subscribe(item => {
       if (item) item$.update({ quantity: item["quantity"] + 1 });
-      else item$.set({ product: product.key, quantity: 1 });
+      else {
+        console.log(product);
+        var prod: Product = {
+          category: product.payload.node_.children_.root_.left.left.value.value_,
+          title: product.payload.node_.children_.root_.right.value.value_,
+          imageUrl: product.payload.node_.children_.root_.left.value.value_,
+          price: product.payload.node_.children_.root_.value.value_,
+          key: product["key"]
+        };
+
+        console.log(prod);
+        item$.set({ product: prod, quantity: 1 });
+      }
     })
   }
 }

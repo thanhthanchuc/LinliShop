@@ -4,7 +4,6 @@ import { ProductService } from "./../product.service";
 import { Component } from "@angular/core";
 import { switchMap } from "rxjs/operators";
 import { ShoppingCartService } from "../shopping-card.service";
-import { Product } from "../models/product";
 
 @Component({
   selector: "app-products",
