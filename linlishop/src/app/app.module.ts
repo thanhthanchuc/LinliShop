@@ -1,4 +1,4 @@
-import { ShoppingCardService } from './shopping-card.service';
+import { ShoppingCartService } from './shopping-card.service';
 import { ProductService } from "./product.service";
 import { CategoriesService } from "./categories.service";
 import { AdminAuthService } from "./admin-auth-service.service";
@@ -104,8 +104,8 @@ import { FormsModule } from "@angular/forms";
     AdminAuthService,
     CategoriesService,
     ProductService,
-    ShoppingCardService
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
