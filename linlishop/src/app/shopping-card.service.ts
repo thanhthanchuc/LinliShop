@@ -42,8 +42,7 @@ export class ShoppingCartService {
           category: product.payload.node_.children_.root_.left.left.value.value_,
           title: product.payload.node_.children_.root_.right.value.value_,
           imageUrl: product.payload.node_.children_.root_.left.value.value_,
-          price: product.payload.node_.children_.root_.value.value_,
-          key: product["key"]
+          price: product.payload.node_.children_.root_.value.value_
         };
 
         console.log(prod);
