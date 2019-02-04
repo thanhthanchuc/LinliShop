@@ -59,6 +59,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.cartService.addToCart(product);
   }
 
+  removeFromCart(product) {
+    this.cartService.removeFromCart(product);
+  }
+
   getQuantity(product) {
     if (!this.cart) return 0;
     let item = this.cart.items[product["key"]];
