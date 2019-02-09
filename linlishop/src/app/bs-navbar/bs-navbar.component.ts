@@ -5,6 +5,7 @@ import { Component, OnInit } from "@angular/core";
 import * as firebase from "firebase";
 import { Observable } from "rxjs";
 import { ShoppingCartService } from '../shopping-card.service';
+import { shoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: "bs-navbar",
@@ -14,7 +15,7 @@ import { ShoppingCartService } from '../shopping-card.service';
 export class BsNavbarComponent implements OnInit {
   isCollapsed = false;
   user$: Observable<{}>;
-  shoppingCartItemCount: number;
+  cart$: Observable<shoppingCart>;
 
   constructor(private auth: AuthService, private shoppingCartService: ShoppingCartService) {
     this.user$ = auth.appUser$;
@@ -23,12 +24,7 @@ export class BsNavbarComponent implements OnInit {
   async ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    let cart$ = (await this.shoppingCartService.getCart()).valueChanges();
-    cart$.subscribe(cart => {
-      this.shoppingCartItemCount = 0;
-      for (let productId in cart.items)
-        this.shoppingCartItemCount += cart.items[productId].quantity;
-    })
+    this.cart$ = (await this.shoppingCartService.getCart());
   }
 
   logout() {

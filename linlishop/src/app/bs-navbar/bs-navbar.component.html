@@ -9,8 +9,8 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart" (click)="isCollapsed = false">Giỏ hàng
-          <span class="badge badge-warning padge-pill">
-            {{shoppingCartItemCount}}
+          <span class="badge badge-warning padge-pill" *ngIf="cart$ | async as cart">
+            {{cart.totalItemsCount}}
           </span>
         </a>
       </li>
