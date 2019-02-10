@@ -38,28 +38,33 @@ export class ShoppingCartService {
   }
 
   async addToCart(product) {
-    this.updateItemQuantity(product, 1)
+    this.updateItem(product, 1)
   }
 
   async removeFromCart(product) {
-    this.updateItemQuantity(product, -1);
+    this.updateItem(product, -1);
   }
 
-  private async updateItemQuantity(product, change: number) {
+  private async updateItem(product, change: number) {
     let cartId = await this.getOrCreateCartId();
     let item$ = this.getItem(cartId, product.key);
 
     item$.valueChanges().pipe(take(1)).subscribe(item => {
       if (item) item$.update({ quantity: item["quantity"] + change });
       else {
-        var prod: Product = {
+        // var prod: Product = {
+        //   category: product.payload.node_.children_.root_.left.left.value.value_,
+        //   title: product.payload.node_.children_.root_.right.value.value_,
+        //   imageUrl: product.payload.node_.children_.root_.left.value.value_,
+        //   price: product.payload.node_.children_.root_.value.value_
+        // };
+        item$.set({
           category: product.payload.node_.children_.root_.left.left.value.value_,
           title: product.payload.node_.children_.root_.right.value.value_,
           imageUrl: product.payload.node_.children_.root_.left.value.value_,
-          price: product.payload.node_.children_.root_.value.value_
-        };
-
-        item$.set({ product: prod, quantity: 1 });
+          price: product.payload.node_.children_.root_.value.value_,
+          quantity: 1
+        });
       }
     })
   }

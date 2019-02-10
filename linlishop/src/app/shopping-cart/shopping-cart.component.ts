@@ -11,9 +11,12 @@ import { ShoppingCart } from '../models/shopping-cart';
 export class ShoppingCartComponent implements OnInit {
   cart$: Observable<ShoppingCart>;
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  constructor(private shoppingCartService: ShoppingCartService) {
+
+  }
 
   async ngOnInit() {
+    (await this.shoppingCartService.getCart()).subscribe(x => console.log(x))
     this.cart$ = (await this.shoppingCartService.getCart());
   }
 

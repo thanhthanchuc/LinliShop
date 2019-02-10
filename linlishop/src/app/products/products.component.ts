@@ -42,7 +42,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
 
     this.categories$ = categoriesService.getAll();
-
   }
 
   async ngOnInit() {
@@ -50,8 +49,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.subscription.unsubscribe();
   }
 
