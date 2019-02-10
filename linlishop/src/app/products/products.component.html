@@ -25,15 +25,7 @@
                   vào giỏ hàng</button>
 
                 <ng-template #updateQuantity>
-                  <div class="row no-gutters">
-                    <div class="col-2">
-                      <button (click)="removeFromCart(p)" class="btn btn-secondary btn-block">-</button>
-                    </div>
-                    <div class="col text-center">{{getQuantity(p)}} sản phẩm</div>
-                    <div class="col-2">
-                      <button (click)="addToCart(p)" class="btn btn-secondary btn-block">+</button>
-                    </div>
-                  </div>
+                  <product-quantity [product]="p" [shopping-cart]="cart"></product-quantity>
                 </ng-template>
               </div>
             </div>
