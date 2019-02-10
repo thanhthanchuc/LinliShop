@@ -37,6 +37,12 @@ export class ShoppingCartService {
     return result.key;
   }
 
+  async clearCart() {
+    let cartId = await this.getOrCreateCartId();
+    if (confirm('Bạn chắc chắn muốn xóa hết vật phẩm trong giỏ hàng?'))
+      this.db.object('/shopping-carts/' + cartId + '/items').remove();
+  }
+
   async addToCart(product) {
     this.updateItem(product, 1)
   }
