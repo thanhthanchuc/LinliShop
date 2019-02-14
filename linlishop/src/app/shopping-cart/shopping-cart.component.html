@@ -1,12 +1,12 @@
 <h1>Giỏ hàng</h1>
-<ng-container *ngIf="cart$ | async as cart">
+<div class="row col-10" *ngIf="cart$ | async as cart">
   <p>Bạn có {{cart.totalItemsCount}} sản phẩm trong giỏ hàng</p>
   <table class="table">
     <thead>
       <tr>
         <th>Sản phẩm</th>
-        <th>Số lượng</th>
-        <th>Giá</th>
+        <th class="text-center" style="width: 220px">Số lượng</th>
+        <th class="text-right" style="width: 20%">Giá</th>
       </tr>
     </thead>
     <tbody>
@@ -15,7 +15,7 @@
         <td>
           <product-quantity [product]="item" [shopping-cart]="cart"></product-quantity>
         </td>
-        <td>{{item.totalPrice | currency:'USD':true}}</td>
+        <td class="text-right">{{item.totalPrice | currency:'USD':true}}</td>
       </tr>
     </tbody>
     <tfoot>
@@ -27,4 +27,4 @@
     </tfoot>
   </table>
   <button (click)="clearCart()" class="btn btn-danger btn-sm">Xóa</button>
-</ng-container>
+</div>

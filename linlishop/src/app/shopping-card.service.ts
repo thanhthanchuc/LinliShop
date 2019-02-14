@@ -56,14 +56,12 @@ export class ShoppingCartService {
     let item$ = this.getItem(cartId, product.key);
 
     item$.valueChanges().pipe(take(1)).subscribe(item => {
-      if (item) item$.update({ quantity: item["quantity"] + change });
+      if (item) {
+        item$.update({ quantity: item["quantity"] + change });
+        let quantityObject = item["quantity"];
+        if (quantityObject === 0) item$.remove();
+      }
       else {
-        // var prod: Product = {
-        //   category: product.payload.node_.children_.root_.left.left.value.value_,
-        //   title: product.payload.node_.children_.root_.right.value.value_,
-        //   imageUrl: product.payload.node_.children_.root_.left.value.value_,
-        //   price: product.payload.node_.children_.root_.value.value_
-        // };
         item$.set({
           category: product.payload.node_.children_.root_.left.left.value.value_,
           title: product.payload.node_.children_.root_.right.value.value_,
