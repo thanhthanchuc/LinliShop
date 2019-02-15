@@ -5,7 +5,7 @@ import { Component, OnInit } from "@angular/core";
 import * as firebase from "firebase";
 import { Observable } from "rxjs";
 import { ShoppingCartService } from '../shopping-card.service';
-import { shoppingCart } from '../models/shopping-cart';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: "bs-navbar",
@@ -15,7 +15,7 @@ import { shoppingCart } from '../models/shopping-cart';
 export class BsNavbarComponent implements OnInit {
   isCollapsed = false;
   user$: Observable<{}>;
-  cart$: Observable<shoppingCart>;
+  cart$: Observable<ShoppingCart>;
 
   constructor(private auth: AuthService, private shoppingCartService: ShoppingCartService) {
     this.user$ = auth.appUser$;

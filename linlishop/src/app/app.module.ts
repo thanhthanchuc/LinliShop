@@ -29,6 +29,7 @@ import { BsNavbarComponent } from "./bs-navbar/bs-navbar.component";
 import { UserService } from "./user.service";
 import { ProductFormComponent } from "./admin/product-form/product-form.component";
 import { FormsModule } from "@angular/forms";
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FormsModule } from "@angular/forms";
     AdminOrdersComponent,
     LoginComponent,
     BsNavbarComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductQuantityComponent
   ],
   imports: [
     NgbCollapseModule,

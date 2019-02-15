@@ -1,6 +1,15 @@
 import { Product } from "./product";
 
-export interface shoppingCartItem {
-    product: Product,
-    quantity: number
+export class shoppingCartItem {
+    key: string;
+    title: string;
+    price: number;
+    imageUrl: string;
+    quantity: number;
+
+    constructor(init?: Partial<shoppingCartItem>) {
+        Object.assign(this, init);
+    }
+
+    get totalPrice() { return this.price * this.quantity; }
 }
